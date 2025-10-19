@@ -31,6 +31,8 @@ export const REGEX = {
   NUMBER: /\d/,
   ALLOWED_CHARS: (escapedSeperator = EMPTY_STRING) =>
     new RegExp(`^[0-9,:${escapedSeperator}]+$`),
+  ALLOWED_NON_NUMBER: (escapedSeperator = '') =>
+    new RegExp(`[,:${escapedSeperator}]`),
   REPEATED_NON_NUMBER: (escapedSeperator = '') =>
     new RegExp(`[,:${escapedSeperator}]{2,}`),
 };
