@@ -13,10 +13,10 @@ export default function calculator(input) {
 
   const stringNumberArray = extractNumArr(customSeperator, parsedInput);
 
-  let sum = 0;
-  stringNumberArray.map((number) => {
-    sum += Number(number);
-  });
+  const sum = stringNumberArray.reduce(
+    (acc, number) => acc + Number(number),
+    0,
+  );
 
   return sum;
 }
