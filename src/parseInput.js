@@ -1,5 +1,5 @@
-import { EMPTY_STRING, REGEX, SEPERATOR } from './constants';
-import { validateRawInput } from './validator';
+import { EMPTY_STRING, REGEX, SEPERATOR } from './constants.js';
+import { validateRawInput } from './validator.js';
 
 export default function parseInput(input) {
   validateRawInput(input);

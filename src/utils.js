@@ -1,5 +1,5 @@
-import { EMPTY_STRING, REGEX } from './constants';
-import { validateCustomSeperator, validateParsedInput } from './validator';
+import { EMPTY_STRING, REGEX } from './constants.js';
+import { validateCustomSeperator, validateParsedInput } from './validator.js';
 
 export function extractCustomSeperator(customIndicator) {
   if (customIndicator === EMPTY_STRING) return customIndicator;

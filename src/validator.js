@@ -1,4 +1,4 @@
-import { ERROR_MESSAGE, REGEX, SEPERATOR } from './constants';
+import { ERROR_MESSAGE, REGEX, SEPERATOR } from './constants.js';
 
 export function validateRawInput(input) {
   if (
