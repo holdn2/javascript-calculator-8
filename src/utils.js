@@ -1,8 +1,8 @@
 import { EMPTY_STRING, REGEX } from './constants';
-import { validateParsedInput } from './validator';
+import { validateCustomSeperator, validateParsedInput } from './validator';
 
 export function extractCustomSeperator(customIndicator) {
-  if (customIndicator === EMPTY_STRING) return EMPTY_STRING;
+  if (customIndicator === EMPTY_STRING) return customIndicator;
   const customSeperator = customIndicator.match(REGEX.CUSTOM_INDICATOR)[1];
 
   validateCustomSeperator(customSeperator);
@@ -11,7 +11,7 @@ export function extractCustomSeperator(customIndicator) {
 }
 
 export function extractNumArr(customSeperator, parsedInput) {
-  const escapedSeperator = customIndicator
+  const escapedSeperator = customSeperator
     ? formatEscapedSeparator(customSeperator)
     : '';
 
