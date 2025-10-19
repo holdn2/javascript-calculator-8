@@ -14,15 +14,6 @@ export function validateRawInput(input) {
   }
 }
 
-function validateBoundaryNumbers(input) {
-  if (
-    !REGEX.NUMBER.test(input.charAt(0)) ||
-    !REGEX.NUMBER.test(input.slice(-1))
-  ) {
-    throw new Error(ERROR_MESSAGE.INVALID_START_END_CHARACTER);
-  }
-}
-
 export function validateCustomSeperator(customSeperator) {
   if (customSeperator.length !== 1) {
     throw new Error(ERROR_MESSAGE.INVALID_SEPERATOR_LENGTH);
@@ -35,5 +26,26 @@ export function validateCustomSeperator(customSeperator) {
     customSeperator === SEPERATOR.DEFAULT_COLON
   ) {
     throw new Error(ERROR_MESSAGE.INVALID_CUSTOM_SEPERATOR_DEFAULT);
+  }
+}
+
+export function validateParsedInput(escapedSeperator, parsedInput) {
+  validateBoundaryNumbers(parsedInput);
+
+  if (!REGEX.ALLOWED_CHARS(escapedSeperator).test(parsedInput)) {
+    throw new Error(ERROR_MESSAGE.INVALID_CHARACTER);
+  }
+
+  if (REGEX.REPEATED_NON_NUMBER(escapedSeperator).test(parsedInput)) {
+    throw new Error(ERROR_MESSAGE.MISSING_NUMBER_BETWEEN_SEPERATORS);
+  }
+}
+
+function validateBoundaryNumbers(input) {
+  if (
+    !REGEX.NUMBER.test(input.charAt(0)) ||
+    !REGEX.NUMBER.test(input.slice(-1))
+  ) {
+    throw new Error(ERROR_MESSAGE.INVALID_START_END_CHARACTER);
   }
 }
