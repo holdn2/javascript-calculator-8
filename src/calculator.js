@@ -5,7 +5,9 @@ import { extractCustomSeperator, extractNumArr } from './utils.js';
 export default function calculator(input) {
   if (input === EMPTY_STRING) return EMPTY_INPUT_RESULT;
 
-  const { customIndicator, parsedInput } = parseInput(input);
+  const normalizedInput = input.replace(/\\n/g, '\n');
+
+  const { customIndicator, parsedInput } = parseInput(normalizedInput);
 
   const customSeperator = extractCustomSeperator(customIndicator);
 
