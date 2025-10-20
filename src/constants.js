@@ -14,7 +14,7 @@ export const ERROR_MESSAGE = {
   INVALID_CUSTOM_SEPARATOR_DEFAULT:
     '[ERROR] ","과 ":"은 기본 구분자이므로 커스텀 구분자로 지정할 수 없습니다.',
   INVALID_START_END_CHARACTER:
-    '[ERROR] 문자열의 맨 앞과 뒤는 숫자여야 합니다. (커스텀 구분자를 지정하기 위한 문자열 제외)',
+    '[ERROR] 문자열의 맨 앞과 뒤는 숫자여야 합니다. (커스텀 구분자 지시자 영역 제외)',
   MISSING_NUMBER_BETWEEN_SEPARATORS:
     '[ERROR] 구분자가 연속으로 올 수 없습니다.',
 };
