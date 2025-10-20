@@ -1,10 +1,10 @@
-import { EMPTY_STRING, REGEX, SEPERATOR } from './constants.js';
+import { EMPTY_STRING, REGEX, SEPARATOR } from './constants.js';
 import { validateRawInput } from './validator.js';
 
 export default function parseInput(input) {
   validateRawInput(input);
 
-  if (!input.startsWith(SEPERATOR.CUSTOM_START)) {
+  if (!input.startsWith(SEPARATOR.CUSTOM_START)) {
     return { customIndicator: EMPTY_STRING, parsedInput: input };
   }
 

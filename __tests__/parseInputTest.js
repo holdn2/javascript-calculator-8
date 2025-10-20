@@ -2,7 +2,7 @@ import { EMPTY_STRING } from '../src/constants';
 import parseInput from '../src/parseInput';
 
 describe('parseInput', () => {
-  test('입력값이 //로 시작하지 않는다면 customSeperator는 빈 스트링, parsedInput은 input 그대로 출력한다.', () => {
+  test('입력값이 //로 시작하지 않는다면 customSeparator는 빈 스트링, parsedInput은 input 그대로 출력한다.', () => {
     const input = '5,1:5';
     const result = parseInput(input);
 

@@ -1,43 +1,43 @@
-import { ERROR_MESSAGE, REGEX, SEPERATOR } from './constants.js';
+import { ERROR_MESSAGE, REGEX, SEPARATOR } from './constants.js';
 
 export function validateRawInput(input) {
   if (
-    !input.includes(SEPERATOR.CUSTOM_START) ||
-    !input.includes(SEPERATOR.CUSTOM_END)
+    !input.includes(SEPARATOR.CUSTOM_START) ||
+    !input.includes(SEPARATOR.CUSTOM_END)
   ) {
     validateBoundaryNumbers(input);
     return;
   }
 
-  if (!input.startsWith(SEPERATOR.CUSTOM_START)) {
-    throw new Error(ERROR_MESSAGE.INVALID_CUSTOM_SEPERATOR_START);
+  if (!input.startsWith(SEPARATOR.CUSTOM_START)) {
+    throw new Error(ERROR_MESSAGE.INVALID_CUSTOM_SEPARATOR_START);
   }
 }
 
-export function validateCustomSeperator(customSeperator) {
-  if (customSeperator.length !== 1) {
-    throw new Error(ERROR_MESSAGE.INVALID_SEPERATOR_LENGTH);
+export function validateCustomSeparator(customSeparator) {
+  if (customSeparator.length !== 1) {
+    throw new Error(ERROR_MESSAGE.INVALID_SEPARATOR_LENGTH);
   }
-  if (REGEX.NUMBER.test(customSeperator)) {
-    throw new Error(ERROR_MESSAGE.INVALID_CUSTOM_SEPERATOR_NUMBER);
+  if (REGEX.NUMBER.test(customSeparator)) {
+    throw new Error(ERROR_MESSAGE.INVALID_CUSTOM_SEPARATOR_NUMBER);
   }
   if (
-    customSeperator === SEPERATOR.DEFAULT_COMMA ||
-    customSeperator === SEPERATOR.DEFAULT_COLON
+    customSeparator === SEPARATOR.DEFAULT_COMMA ||
+    customSeparator === SEPARATOR.DEFAULT_COLON
   ) {
-    throw new Error(ERROR_MESSAGE.INVALID_CUSTOM_SEPERATOR_DEFAULT);
+    throw new Error(ERROR_MESSAGE.INVALID_CUSTOM_SEPARATOR_DEFAULT);
   }
 }
 
-export function validateParsedInput(escapedSeperator, parsedInput) {
+export function validateParsedInput(escapedSepArator, parsedInput) {
   validateBoundaryNumbers(parsedInput);
 
-  if (!REGEX.ALLOWED_CHARS(escapedSeperator).test(parsedInput)) {
+  if (!REGEX.ALLOWED_CHARS(escapedSepArator).test(parsedInput)) {
     throw new Error(ERROR_MESSAGE.INVALID_CHARACTER);
   }
 
-  if (REGEX.REPEATED_NON_NUMBER(escapedSeperator).test(parsedInput)) {
-    throw new Error(ERROR_MESSAGE.MISSING_NUMBER_BETWEEN_SEPERATORS);
+  if (REGEX.REPEATED_NON_NUMBER(escapedSepArator).test(parsedInput)) {
+    throw new Error(ERROR_MESSAGE.MISSING_NUMBER_BETWEEN_SEPARATORS);
   }
 }
 

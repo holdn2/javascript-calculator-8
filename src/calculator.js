@@ -1,6 +1,6 @@
 import { EMPTY_INPUT_RESULT, EMPTY_STRING } from './constants.js';
 import parseInput from './parseInput.js';
-import { extractCustomSeperator, extractNumArr } from './utils.js';
+import { extractCustomSeparator, extractNumArr } from './utils.js';
 
 export default function calculator(input) {
   if (input === EMPTY_STRING) return EMPTY_INPUT_RESULT;
@@ -9,9 +9,9 @@ export default function calculator(input) {
 
   const { customIndicator, parsedInput } = parseInput(normalizedInput);
 
-  const customSeperator = extractCustomSeperator(customIndicator);
+  const customSeparator = extractCustomSeparator(customIndicator);
 
-  const stringNumberArray = extractNumArr(customSeperator, parsedInput);
+  const stringNumberArray = extractNumArr(customSeparator, parsedInput);
 
   const sum = stringNumberArray.reduce(
     (acc, number) => acc + Number(number),

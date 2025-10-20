@@ -1,29 +1,29 @@
 import { EMPTY_STRING, REGEX } from './constants.js';
-import { validateCustomSeperator, validateParsedInput } from './validator.js';
+import { validateCustomSeparator, validateParsedInput } from './validator.js';
 
-export function extractCustomSeperator(customIndicator) {
+export function extractCustomSeparator(customIndicator) {
   if (customIndicator === EMPTY_STRING) return customIndicator;
-  const customSeperator = customIndicator.match(REGEX.CUSTOM_INDICATOR)[1];
+  const customSeparator = customIndicator.match(REGEX.CUSTOM_INDICATOR)[1];
 
-  validateCustomSeperator(customSeperator);
+  validateCustomSeparator(customSeparator);
 
-  return customSeperator;
+  return customSeparator;
 }
 
-export function extractNumArr(customSeperator, parsedInput) {
-  const escapedSeperator = customSeperator
-    ? formatEscapedSeparator(customSeperator)
-    : '';
+export function extractNumArr(customSeparator, parsedInput) {
+  const escapedSeparator = customSeparator
+    ? formatEscapedSeparator(customSeparator)
+    : EMPTY_STRING;
 
-  validateParsedInput(escapedSeperator, parsedInput);
+  validateParsedInput(escapedSeparator, parsedInput);
 
   const numStringArr = parsedInput.split(
-    REGEX.ALLOWED_NON_NUMBER(escapedSeperator),
+    REGEX.ALLOWED_NON_NUMBER(escapedSeparator),
   );
 
   return numStringArr;
 }
 
-function formatEscapedSeparator(customSeperator) {
-  return customSeperator.replace(/[-/\\^$*+?.()|[\]{}]/g, '\\$&');
+function formatEscapedSeparator(customSeparator) {
+  return customSeparator.replace(/[-/\\^$*+?.()|[\]{}]/g, '\\$&');
 }
