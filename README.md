@@ -79,6 +79,19 @@
 - [ERROR] 문자열의 맨 앞과 맨 뒤는 숫자여야 합니다. (커스텀 구분자를 지정하기 위한 문자열 제외)
 - [ERROR] 구분자가 연속으로 올 수 없습니다.
 
+## 📁 디렉토리 구조
+
+```bash
+src/
+ ├─ 📄 App.js               # 프로그램 실행 흐름 (입출력)
+ ├─ 📄 calculator.js        # 전체 계산 로직 제어
+ ├─ 📄 constants.js         # 상수, 정규식, 에러 메시지 정의
+ ├─ 📄 index.js             # 진입점
+ ├─ 📄 parseInput.js        # 입력값 파싱 및 커스텀 지시자 분리
+ ├─ 📄 utils.js             # 커스텀 구분자 추출, 숫자 배열 생성
+ ├─ 📄 validator.js         # 입력값 유효성 검증
+```
+
 ## 💻 참고자료
 
 - [JavaScript Style Guide](https://github.com/woowacourse/woowacourse-docs/tree/main/styleguide/javascript)
