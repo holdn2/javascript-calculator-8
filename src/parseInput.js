@@ -1,4 +1,4 @@
-import { EMPTY_STRING, ERROR_MESSAGE, REGEX, SEPARATOR } from './constants.js';
+import { EMPTY_STRING, REGEX, SEPARATOR } from './constants.js';
 import { normalizeInput } from './utils.js';
 import { validateCustomIndicator, validateRawInput } from './validator.js';
 
