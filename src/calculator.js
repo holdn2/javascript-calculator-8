@@ -1,13 +1,15 @@
 import { EMPTY_INPUT_RESULT, EMPTY_STRING } from './constants.js';
 import parseInput from './parseInput.js';
-import { extractCustomSeparator, extractNumArr } from './utils.js';
+import {
+  extractCustomSeparator,
+  extractNumArr,
+  normalizeInput,
+} from './utils.js';
 
 export default function calculator(input) {
   if (input === EMPTY_STRING) return EMPTY_INPUT_RESULT;
 
-  const normalizedInput = input.replace(/\\n/g, '\n');
-
-  const { customIndicator, parsedInput } = parseInput(normalizedInput);
+  const { customIndicator, parsedInput } = parseInput(input);
 
   const customSeparator = extractCustomSeparator(customIndicator);
 

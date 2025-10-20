@@ -27,3 +27,7 @@ export function extractNumArr(customSeparator, parsedInput) {
 function formatEscapedSeparator(customSeparator) {
   return customSeparator.replace(/[-/\\^$*+?.()|[\]{}]/g, '\\$&');
 }
+
+export function normalizeInput(input) {
+  return input.replace(/\\n/g, '\n');
+}
