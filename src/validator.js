@@ -14,6 +14,12 @@ export function validateRawInput(input) {
   }
 }
 
+export function validateCustomIndicator(match) {
+  if (!match) {
+    throw Error(ERROR_MESSAGE.INVALID_SEPARATOR_LENGTH);
+  }
+}
+
 export function validateCustomSeparator(customSeparator) {
   if (customSeparator.length !== 1) {
     throw new Error(ERROR_MESSAGE.INVALID_SEPARATOR_LENGTH);

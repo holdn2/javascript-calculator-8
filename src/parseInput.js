@@ -1,17 +1,22 @@
-import { EMPTY_STRING, REGEX, SEPARATOR } from './constants.js';
-import { validateRawInput } from './validator.js';
+import { EMPTY_STRING, ERROR_MESSAGE, REGEX, SEPARATOR } from './constants.js';
+import { normalizeInput } from './utils.js';
+import { validateCustomIndicator, validateRawInput } from './validator.js';
 
 export default function parseInput(input) {
-  validateRawInput(input);
+  const normalizedInput = normalizeInput(input);
 
-  if (!input.startsWith(SEPARATOR.CUSTOM_START)) {
-    return { customIndicator: EMPTY_STRING, parsedInput: input };
+  validateRawInput(normalizedInput);
+
+  if (!normalizedInput.startsWith(SEPARATOR.CUSTOM_START)) {
+    return { customIndicator: EMPTY_STRING, parsedInput: normalizedInput };
   }
 
-  const match = input.match(REGEX.CUSTOM_INDICATOR);
+  const match = normalizedInput.match(REGEX.CUSTOM_INDICATOR);
+
+  validateCustomIndicator(match);
 
   const customIndicator = match[0];
-  const parsedInput = input.slice(customIndicator.length);
+  const parsedInput = normalizedInput.slice(customIndicator.length);
 
   return { customIndicator, parsedInput };
 }
