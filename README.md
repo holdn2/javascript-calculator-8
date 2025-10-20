@@ -25,16 +25,14 @@
 1. **콘솔 입력**
    - `Console.readLineAsync()`로 문자열 입력을 받는다.
 
-2. **입력 정규화**
-   - 입력값에 포함된 `\\n` 문자열을 실제 개행문자(`\n`)로 변환한다.
+2. **입력 정규화 및 입력 파싱 (`parseInput`)**
+   - 입력값에 포함된 `\\n` 문자열을 실제 개행문자(`\n`)로 변환한다. (`normalizeInput`)
    - 콘솔에서는 `\n` 입력이 `\\n` 문자열로 인식되기 때문.
    - 예: `"//;\\n1;2"` -> `"//;\n1;2"`
-
-3. **입력 파싱 (`parseInput`)**
    - 입력 문자열을 커스텀 구분자 지시자 영역(`//...\n`)과 실제 계산 영역으로 분리한다.
    - 예: `"//;\n1;2;3"` -> `{ customIndicator: "//;\n", parsedInput: "1;2;3" }`
 
-4. **커스텀 구분자 추출 (`extractCustomSeparator`)**
+3. **커스텀 구분자 추출 (`extractCustomSeparator`)**
    - 커스텀 구분자 지시자 영역에서 커스텀 구분자를 추출한다.
    - 예 : `//;\n` -> `;`
    - 다음 조건을 만족하지 않으면 에러가 발생한다. (커스텀 구분자 검증)
@@ -42,28 +40,30 @@
      - 숫자로 지정할 수 없다.
      - 기본 구분자(`,`, `:`)로 지정할 수 없다.
 
-5. **파싱된 문자열 검증 (`validateParsedInput`)**
+4. **파싱된 문자열 검증 (`validateParsedInput`)**
    - 문자열의 시작과 끝이 숫자여야 한다.
    - 문자열 내 문자는 숫자, 기본 구분자(`,`, `:`), 커스텀 구분자만 허용된다.
    - 구분자가 연속으로 두 번 이상 등장할 수 없다. (예: `1,,2`, `1::3` -> 에러 발생)
 
-6. **숫자 배열 생성 (`extractNumArr`)**
+5. **숫자 배열 생성 (`extractNumArr`)**
    - 구분자를 기준으로 분리하여 숫자 문자열 배열로 변환한다.
    - 예 : `"1,2:3"` -> `["1", "2", "3"]` / `"//;\n1;2;3"` -> `["1", "2", "3"]`
 
-7. **총합 계산 (`calculator`)**
+6. **총합 계산 (`calculator`)**
    - `reduce()`를 사용해 숫자 배열을 합산한다.
    - 예: `["1", "2", "3"]` → `6`
 
-8. **결과 출력**
+7. **결과 출력**
    - `Console.print()`로 결과를 출력한다.
 
 ## 📍 함수
 
 - **`parseInput(input)`** : 문자열을 커스텀 구분자 영역과 계산 영역으로 분리
+- **`normalizeInput(input)`** : `\n` 입력 시 `\\n`으로 인식되는 문자열 정규화
 - **`extractCustomSeparator(customIndicator)`** : 커스텀 구분자를 추출 및 검증
 - **`extractNumArr(customSeparator, parsedInput)`** : 구분자를 기준으로 숫자 문자열 배열 생성
 - **`validateRawInput(input)`** : 문자열 구조(커스텀 지시자 포함 여부, 시작 문자 등) 검증
+- **`validateCustomIndicator(match)`** : 구분자 지시자 영역 검증 (하나 이상 지정되지 않으면 에러)
 - **`validateCustomSeparator(separator)`** : 커스텀 구분자 유효성 검증 (길이, 문자 종류 등)
 - **`validateParsedInput(separator, parsedInput)`** : 파싱된 숫자 영역의 구성 유효성 검증
 - **`formatEscapedSeparator(separator)`** : 정규식에서 안전하게 사용하도록 특수문자 이스케이프 처리
